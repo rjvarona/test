@@ -13,9 +13,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { HeaderComponent } from './header/header.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-	declarations: [AppComponent, HeroesComponent],
+	declarations: [AppComponent, HeroesComponent, HeaderComponent, NavbarComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,

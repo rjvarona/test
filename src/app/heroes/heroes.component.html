@@ -1,142 +1,111 @@
-<body>
-	<mat-toolbar class="header">
-		<h1>Periodic</h1>
-		<span class="example-spacer"></span>
-		<span class="example-spacer"></span>
-		<span flex></span>
-		<span class="fill-space"></span>
-
-		<div class="example-button-container">
-			<button
-				mat-fab
-				aria-label="Example icon button with a delete icon"
-			></button>
-		</div>
-
-		<p>User</p>
-	</mat-toolbar>
-
-	<div layout="row">
-		<mat-grid-list cols="5" rowHeight="2:1" class="navbar">
-			<mat-grid-tile> <h1 class="unselected">HOME</h1></mat-grid-tile>
-			<mat-grid-tile> <h1 class="unselected">ACTIVITY</h1></mat-grid-tile>
-			<mat-grid-tile> <h1 class="unselected">USERS</h1></mat-grid-tile>
+<div layout="row">
+	<app-navbar></app-navbar>
+	<div class="container">
+		<div class="triangle-up"></div>
+		<mat-grid-list cols="5" rowHeight="2:1" class="subnavbar">
+			<mat-grid-tile> <h1 class="unselected">providers</h1></mat-grid-tile>
+			<mat-grid-tile> <h1 class="unselected">bookables</h1></mat-grid-tile>
 			<mat-grid-tile>
-				<h1 class="selected unselected">CONFIGURATION</h1></mat-grid-tile
+				<h1 class="unselected selected">resources</h1></mat-grid-tile
 			>
-			<mat-grid-tile> <h1 class="unselected">SETTINGS</h1></mat-grid-tile>
+			<mat-grid-tile> <h1 class="unselected">forms</h1></mat-grid-tile>
+			<mat-grid-tile> <h1 class="unselected">messages</h1></mat-grid-tile>
 		</mat-grid-list>
-		<div class="container">
-			<div class="triangle-up"></div>
-			<mat-grid-list cols="5" rowHeight="2:1" class="subnavbar">
-				<mat-grid-tile> <h1 class="unselected">providers</h1></mat-grid-tile>
-				<mat-grid-tile> <h1 class="unselected">bookables</h1></mat-grid-tile>
-				<mat-grid-tile>
-					<h1 class="unselected selected">resources</h1></mat-grid-tile
-				>
-				<mat-grid-tile> <h1 class="unselected">forms</h1></mat-grid-tile>
-				<mat-grid-tile> <h1 class="unselected">messages</h1></mat-grid-tile>
-			</mat-grid-list>
-			<mat-toolbar class="formheader">
-				<h1>Resource Groups > Create</h1>
-				<span class="fill-space"></span>
-				<div>
-					<button mat-raised-button color="warn" class="subheadbtn">
-						cancel
-					</button>
-					<button mat-raised-button id="save" class="subheadbtn">save</button>
+		<mat-toolbar class="formheader">
+			<h1>Resource Groups > Create</h1>
+			<span class="fill-space"></span>
+			<div>
+				<button mat-raised-button color="warn" class="subheadbtn">
+					cancel
+				</button>
+				<button mat-raised-button id="save" class="subheadbtn">save</button>
+			</div>
+		</mat-toolbar>
+		<!-- this is forms and basic info -->
+		<mat-grid-list cols="4" rowHeight="1:2">
+			<mat-grid-tile colspan="1">
+				<div class="text-inside-grid2">
+					<div class="chosen">
+						<p>Basic Info</p>
+					</div>
 				</div>
-			</mat-toolbar>
-			<!-- this is forms and basic info -->
-			<mat-grid-list cols="4" rowHeight="1:2">
-				<mat-grid-tile colspan="1">
-					<div class="text-inside-grid2">
-						<div class="chosen">
-							<p>Basic Info</p>
-						</div>
+			</mat-grid-tile>
+			<mat-grid-tile colspan="3" id="col2" class="container">
+				<div class="text-inside-grid">
+					<h1>Basic Info</h1>
+					<form>
+						<mat-form-field class="formfield">
+							<mat-label>Resource Name *</mat-label>
+							<input matInput type="text" class="inputtext" />
+							<button
+								mat-button
+								*ngIf="resourceName"
+								matSuffix
+								mat-icon-button
+								aria-label="Clear"
+								(click)="resourceName = ''"
+							>
+								<mat-icon>close</mat-icon>
+							</button>
+						</mat-form-field>
+
+						<mat-form-field class="formfield">
+							<mat-label>Providers *</mat-label>
+							<mat-select (selectionChange)="onSelectionChanged($event)">
+								<mat-option *ngFor="let key of providers" [value]="key.name">
+									{{ key.name }}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+
+						<mat-form-field>
+							<button
+								mat-mini-fab
+								aria-label="Example icon button with a plus one icon"
+								class="selectbutton"
+							>
+								<mat-icon>add</mat-icon>
+							</button>
+							<span class="selecttext"> ADD RESOURCE</span>
+							<mat-select
+								style="visibility: hidden; width: 0"
+								multiple
+								[disabled]="chosenprovider === ''"
+							>
+								<mat-option *ngFor="let key of resources" [value]="key.name">{{
+									key.name
+								}}</mat-option>
+							</mat-select>
+						</mat-form-field>
+					</form>
+
+					<div class="cardarea">
+						<!-- ngfor -->
+						<mat-grid-list cols="3" rowHeight="2:1">
+							<mat-grid-tile>
+								<mat-card class="resourcecard">
+									<mat-card-header>
+										<img
+											mat-card-avatar
+											src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+											alt="Photo of a Shiba Inu"
+										/>
+										<mat-card-title>{{ selectedResource.name }}</mat-card-title>
+										<mat-card-subtitle>required</mat-card-subtitle>
+
+										<span class="fill-space"></span>
+										<mat-icon>close</mat-icon>
+									</mat-card-header>
+								</mat-card>
+							</mat-grid-tile>
+						</mat-grid-list>
 					</div>
-				</mat-grid-tile>
-				<mat-grid-tile colspan="3" id="col2" class="container">
-					<div class="text-inside-grid">
-						<h1>Basic Info</h1>
-						<form>
-							<mat-form-field class="formfield">
-								<mat-label>Resource Name *</mat-label>
-								<input matInput type="text" class="inputtext" />
-								<button
-									mat-button
-									*ngIf="resourceName"
-									matSuffix
-									mat-icon-button
-									aria-label="Clear"
-									(click)="resourceName = ''"
-								>
-									<mat-icon>close</mat-icon>
-								</button>
-							</mat-form-field>
-
-							<mat-form-field class="formfield">
-								<mat-label>Providers *</mat-label>
-								<mat-select (selectionChange)="onSelectionChanged($event)">
-									<mat-option *ngFor="let key of providers" [value]="key.name">
-										{{ key.name }}
-									</mat-option>
-								</mat-select>
-							</mat-form-field>
-
-							<mat-form-field>
-								<button
-									mat-mini-fab
-									aria-label="Example icon button with a plus one icon"
-									class="selectbutton"
-								>
-									<mat-icon>add</mat-icon>
-								</button>
-								<span class="selecttext"> ADD RESOURCE</span>
-								<mat-select
-									style="visibility: hidden; width: 0"
-									multiple
-									[disabled]="chosenprovider === ''"
-								>
-									<mat-option
-										*ngFor="let key of resources"
-										[value]="key.name"
-										>{{ key.name }}</mat-option
-									>
-								</mat-select>
-							</mat-form-field>
-						</form>
-
-						<div class="cardarea">
-							<!-- ngfor -->
-							<mat-grid-list cols="3" rowHeight="2:1">
-								<mat-grid-tile>
-									<mat-card class="resourcecard">
-										<mat-card-header>
-											<img
-												mat-card-avatar
-												src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-												alt="Photo of a Shiba Inu"
-											/>
-											<mat-card-title>{{
-												selectedResource.name
-											}}</mat-card-title>
-											<mat-card-subtitle>required</mat-card-subtitle>
-
-											<span class="fill-space"></span>
-											<mat-icon>close</mat-icon>
-										</mat-card-header>
-									</mat-card>
-								</mat-grid-tile>
-							</mat-grid-list>
-						</div>
-					</div>
-				</mat-grid-tile>
-			</mat-grid-list>
-		</div>
+				</div>
+			</mat-grid-tile>
+		</mat-grid-list>
 	</div>
-	<!-- invisible footer -->
-	<br />
-	<br />
-	<br />
-</body>
+</div>
+<!-- invisible footer -->
+<br />
+<br />
+<br />
