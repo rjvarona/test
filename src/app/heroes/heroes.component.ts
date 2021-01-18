@@ -12,7 +12,7 @@ import { Provider } from '../models/provider';
 })
 export class HeroesComponent implements OnInit {
 	//mapping data
-
+	name = 'yeetus boleetus ';
 	providers: Provider[] = [
 		{
 			name: 'North Hair Studio',
@@ -59,5 +59,8 @@ export class HeroesComponent implements OnInit {
 
 	onSelectionChanged(event: any): void {
 		this.chosenprovider = event;
+	}
+	getName() {
+		return this.name;
 	}
 }

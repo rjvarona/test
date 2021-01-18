@@ -15,9 +15,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { SubnavbarComponent } from './subnavbar/subnavbar.component';
+import { ResourceCardComponent } from './resource-card/resource-card.component';
 
 @NgModule({
-	declarations: [AppComponent, HeroesComponent, HeaderComponent, NavbarComponent],
+	declarations: [AppComponent, HeroesComponent, HeaderComponent, NavbarComponent, SubnavbarComponent, ResourceCardComponent],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,

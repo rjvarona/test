@@ -1,16 +1,7 @@
 <div layout="row">
 	<app-navbar></app-navbar>
 	<div class="container">
-		<div class="triangle-up"></div>
-		<mat-grid-list cols="5" rowHeight="2:1" class="subnavbar">
-			<mat-grid-tile> <h1 class="unselected">providers</h1></mat-grid-tile>
-			<mat-grid-tile> <h1 class="unselected">bookables</h1></mat-grid-tile>
-			<mat-grid-tile>
-				<h1 class="unselected selected">resources</h1></mat-grid-tile
-			>
-			<mat-grid-tile> <h1 class="unselected">forms</h1></mat-grid-tile>
-			<mat-grid-tile> <h1 class="unselected">messages</h1></mat-grid-tile>
-		</mat-grid-list>
+		<app-subnavbar></app-subnavbar>
 		<mat-toolbar class="formheader">
 			<h1>Resource Groups > Create</h1>
 			<span class="fill-space"></span>
@@ -83,20 +74,7 @@
 						<!-- ngfor -->
 						<mat-grid-list cols="3" rowHeight="2:1">
 							<mat-grid-tile>
-								<mat-card class="resourcecard">
-									<mat-card-header>
-										<img
-											mat-card-avatar
-											src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-											alt="Photo of a Shiba Inu"
-										/>
-										<mat-card-title>{{ selectedResource.name }}</mat-card-title>
-										<mat-card-subtitle>required</mat-card-subtitle>
-
-										<span class="fill-space"></span>
-										<mat-icon>close</mat-icon>
-									</mat-card-header>
-								</mat-card>
+								<app-resource-card [name]="getName()"></app-resource-card>
 							</mat-grid-tile>
 						</mat-grid-list>
 					</div>
@@ -106,6 +84,3 @@
 	</div>
 </div>
 <!-- invisible footer -->
-<br />
-<br />
-<br />
