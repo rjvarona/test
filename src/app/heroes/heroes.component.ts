@@ -28,28 +28,35 @@ export class HeroesComponent implements OnInit {
 		{
 			name: 'Stylist Jeff',
 			id: '51557915d216f60ce56800572900fbe3',
+			associated_providers: ['608cab54e58e3afce3aeec9a34000b03'], //North Hair Studio
 		},
 		{
 			name: 'Stylist Monica',
 			id: 'b3cd8db88d72a3b633b79a7601003533',
+			associated_providers: ['608cab54e58e3afce3aeec9a34000b03'], //North Hair Studio
 		},
 		{
 			name: 'Stylist Lindon',
 			id: '314c28f58d0c70123400634f860069f4',
+			associated_providers: ['a2bd77a8ad5d64f6ffed03ee88009b7f'], //South Hair Studio
 		},
 		{
 			name: 'Stylist Yui',
 			id: '51557915d216f60ce56800572900ec7f',
+			associated_providers: ['a2bd77a8ad5d64f6ffed03ee88009b7f'], //South Hair Studio
 		},
 	];
 	resourceName = '';
-	chosenprovider: string = '';
-	selectedHero: Hero;
+	chosenprovider: Provider = { id: '1', name: '' };
+
 	selectedResource: Resource;
 
 	constructor() {
-		this.selectedHero = { id: 1, name: 'winston' };
-		this.selectedResource = { id: '1', name: 'testing 123' };
+		this.selectedResource = {
+			id: '1',
+			name: 'testing 123',
+			associated_providers: ['123'],
+		};
 		console.log('hello');
 	}
 
@@ -58,9 +65,23 @@ export class HeroesComponent implements OnInit {
 	}
 
 	onSelectionChanged(event: any): void {
-		this.chosenprovider = event;
+		console.log(event.value);
+		this.chosenprovider = event.value;
+		this.filterResourceById(event.value.id);
 	}
-	getName() {
+	getName(): string {
 		return this.name;
+	}
+
+	/**
+	 *
+	 * @param id id of what resources needed to be filtered by
+	 */
+	filterResourceById(id: string): void {
+		console.log('ID ' + id);
+		this.resources = this.resources.filter(u =>
+			u.associated_providers.includes(id)
+		);
+		console.log('ID ' + JSON.stringify(this.resources));
 	}
 }
