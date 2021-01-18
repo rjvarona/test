@@ -1,0 +1,12 @@
+import { Provider } from '../../models/provider';
+
+export const PROVIDERS: Provider[] = [
+	{
+		name: 'North Hair Studio',
+		id: '608cab54e58e3afce3aeec9a34000b03',
+	},
+	{
+		name: 'South Hair Studio',
+		id: 'a2bd77a8ad5d64f6ffed03ee88009b7f',
+	},
+];
