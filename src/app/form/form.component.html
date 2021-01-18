@@ -1,0 +1,78 @@
+<div class="container">
+	<mat-toolbar class="formheader">
+		<h1>Resource Groups > Create</h1>
+		<span class="fill-space"></span>
+		<div>
+			<button mat-raised-button color="warn" class="subheadbtn">cancel</button>
+			<button mat-raised-button id="save" class="subheadbtn">save</button>
+		</div>
+	</mat-toolbar>
+	<!-- this is forms and basic info -->
+	<mat-grid-list cols="4" rowHeight="1:2">
+		<mat-grid-tile colspan="1">
+			<div class="text-inside-grid2">
+				<div class="chosen">
+					<p>Basic Info</p>
+				</div>
+			</div>
+		</mat-grid-tile>
+		<mat-grid-tile colspan="3" id="col2" class="container">
+			<div class="text-inside-grid">
+				<h1>Basic Info</h1>
+				<form>
+					<mat-form-field class="formfield">
+						<mat-label>Resource Name *</mat-label>
+						<input matInput type="text" class="inputtext" />
+						<button
+							mat-button
+							*ngIf="resourceName"
+							matSuffix
+							mat-icon-button
+							aria-label="Clear"
+							(click)="resourceName = ''"
+						>
+							<mat-icon>close</mat-icon>
+						</button>
+					</mat-form-field>
+
+					<mat-form-field class="formfield">
+						<mat-label>Providers *</mat-label>
+						<mat-select (selectionChange)="onSelectionChanged($event)">
+							<mat-option *ngFor="let key of providers" [value]="key">
+								{{ key.name }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field>
+						<button
+							mat-mini-fab
+							aria-label="Example icon button with a plus one icon"
+							class="selectbutton"
+						>
+							<mat-icon>add</mat-icon>
+						</button>
+						<span class="selecttext"> ADD RESOURCE</span>
+						<mat-select
+							style="visibility: hidden; width: 0"
+							multiple
+							[disabled]="chosenprovider.name === ''"
+						>
+							<mat-option *ngFor="let key of resources" [value]="key.name">{{
+								key.name
+							}}</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</form>
+
+				<div class="cardarea">
+					<!-- ngfor -->
+					<mat-grid-list cols="3" rowHeight="2:1">
+						<mat-grid-tile>
+							<app-resource-card [name]="getName()"></app-resource-card>
+						</mat-grid-tile>
+					</mat-grid-list>
+				</div>
+			</div>
+		</mat-grid-tile>
+	</mat-grid-list>
+</div>

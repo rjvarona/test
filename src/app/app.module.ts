@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
+import { FormComponent } from './form/form.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // <-- NgModel lives here
 import { MatButtonModule } from '@angular/material/button';
@@ -19,7 +19,14 @@ import { SubnavbarComponent } from './subnavbar/subnavbar.component';
 import { ResourceCardComponent } from './resource-card/resource-card.component';
 
 @NgModule({
-	declarations: [AppComponent, HeroesComponent, HeaderComponent, NavbarComponent, SubnavbarComponent, ResourceCardComponent],
+	declarations: [
+		AppComponent,
+		FormComponent,
+		HeaderComponent,
+		NavbarComponent,
+		SubnavbarComponent,
+		ResourceCardComponent,
+	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,

@@ -4,11 +4,11 @@ import { Provider } from '../models/provider';
 import { RESOURCES } from './mock/mock-resources';
 import { PROVIDERS } from './mock/mock-providers';
 @Component({
-	selector: 'app-heroes',
-	templateUrl: './heroes.component.html',
-	styleUrls: ['./heroes.component.less'],
+	selector: 'app-form',
+	templateUrl: './form.component.html',
+	styleUrls: ['./form.component.less'],
 })
-export class HeroesComponent implements OnInit {
+export class FormComponent implements OnInit {
 	//mapping data
 	name: string;
 	resourceName: string;
@@ -50,7 +50,6 @@ export class HeroesComponent implements OnInit {
 	}
 
 	/**
-	 *
 	 * @param id id of what resources needed to be filtered by
 	 */
 	filterResourceById(id: string): void {
